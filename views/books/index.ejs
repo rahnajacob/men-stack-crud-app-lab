@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Index</title>
+</head>
+<body>
+    <h1>Books Catalogue</h1>
+    <ul>
+        <% books.forEach((book) => { %>
+         <li><strong>Title: </strong><%=book.title%></li>
+         <li><strong>Author: </strong><%=book.author%></li>
+         <li><strong>Rating: </strong><%=book.rating%>/5</li>
+         <li><strong>Date started: </strong><%=book.dateStarted%></li>
+         <li><strong>Completed? </strong><%=book.completed%></li>
+         <li><strong>Number of rereads: </strong><%=book.rereads%> <br/> <br/></li>
+        <% }) %>
+    </ul>
+</body>
+</html>
