@@ -15,7 +15,7 @@ const Book = require("./models/book.js")
 //MIDDLEWARE
 
 app.use(morgan("dev"))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) //gets the form data from body of books/new in a format that isn't undefined
 
 
 //ROUTES
@@ -30,11 +30,17 @@ app.get("/books/new", (req, res) => {
     return res.render("books/new.ejs")
 })
 
+//making each book characteristic a link
+app.get("/books/:bookId", async (req, res) => {
+    const foundBook = await Book.findById(req.params.bookId)
+    res.render("books/show.ejs", {book:foundBook})
+})
+
 //new book form submission
 app.post("/books", async (req, res) => {
     req.body.completed = Boolean(req.body.completed) //converts to boolean
     const createdBook = await Book.create(req.body) //calling the Book class from the model.js, hence capitalisation
-    res.redirect("/books") //back to index page, avoids page hanging after submitting and getting no response
+    res.redirect("books") //back to index page, avoids page hanging after submitting and getting no response
 })
 
 //books index page
