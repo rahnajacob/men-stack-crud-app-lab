@@ -9,12 +9,9 @@
     <h1>Books Catalogue</h1>
     <ul>
         <% books.forEach((book) => { %>
-         <li><strong>Title: </strong><a href="/books/<%=book._id%>"><%=book.title%></a></li>
+         <p><a href="/books/<%=book._id%>"><%=book.title%></a></p>
          <li><strong>Author: </strong><%=book.author%></li>
-         <li><strong>Rating: </strong><%=book.rating%>/5</li>
-         <li><strong>Date started: </strong><%=book.dateStarted%></li>
-         <li><strong>Completed? </strong><%=book.completed%></li>
-         <li><strong>Number of rereads: </strong><%=book.rereads%> <br/> <br/></li>
+         <li>Completed? <%= book.completed ? "Yes" : "No"%></li>
         <% }) %>
     </ul>
     <a href="/books/new">Add new book</a>

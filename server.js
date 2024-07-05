@@ -4,6 +4,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv").config()
 const morgan = require("morgan")
+const methodOverride = require("method-override")
 
 
 //CONSTANTS
@@ -16,6 +17,7 @@ const Book = require("./models/book.js")
 
 app.use(morgan("dev"))
 app.use(express.urlencoded({ extended: true })) //gets the form data from body of books/new in a format that isn't undefined
+app.use(methodOverride("_method"))
 
 
 //ROUTES
@@ -30,10 +32,18 @@ app.get("/books/new", (req, res) => {
     return res.render("books/new.ejs")
 })
 
-//making each book characteristic a link
+//making each book characteristic a link (SHOW ROUTE)
 app.get("/books/:bookId", async (req, res) => {
     const foundBook = await Book.findById(req.params.bookId)
+    console.log(foundBook)
     res.render("books/show.ejs", {book:foundBook})
+    console.log({book:foundBook})
+})
+
+//making a DELETE route - onto the SHOW.ejs
+app.delete("/books/:bookId", async (req, res) => {
+    await Book.findByIdAndDelete(req.params.bookId)
+    res.redirect("/books")
 })
 
 //new book form submission
