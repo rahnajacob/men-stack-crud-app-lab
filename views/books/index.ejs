@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Index</title>
 </head>
+
 <body>
     <h1>Books Catalogue</h1>
     <ul>
-        <% books.forEach((book) => { %>
-         <p><a href="/books/<%=book._id%>"><%=book.title%></a></p>
-         <li><strong>Author: </strong><%=book.author%></li>
-         <li>Completed? <%= book.completed ? "Yes" : "No"%></li>
-        <% }) %>
+        <% books.forEach((book)=> { %>
+            <p><a href="/books/<%=book._id%>">
+                    <%=book.title%>
+                </a></p>
+            <li><strong>Author: </strong>
+                <%=book.author%>
+            </li>
+            <li>Completed? <%= book.completed ? "Yes" : "No" %>
+            </li>
+            <% }) %>
     </ul>
     <a href="/books/new">Add new book</a>
     <a href="/books">Back to Books Catalogue</a>
 </body>
+
 </html>

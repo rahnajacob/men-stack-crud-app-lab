@@ -25,6 +25,8 @@
     <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
         <button type="submit">Delete <%= book.title %></button>
     </form>
+    <br /> 
+    <a href="/books/<%=book._id%>/edit">Edit <%=book.title%></a>
     <br /> <br />
     <a href="/books/">Back to Books Catalogue</a>
 </body>

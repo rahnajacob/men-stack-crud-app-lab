@@ -36,8 +36,8 @@ app.get("/books/new", (req, res) => {
 app.get("/books/:bookId", async (req, res) => {
     const foundBook = await Book.findById(req.params.bookId)
     console.log(foundBook)
-    res.render("books/show.ejs", {book:foundBook})
-    console.log({book:foundBook})
+    res.render("books/show.ejs", { book: foundBook })
+    console.log({ book: foundBook })
 })
 
 //making a DELETE route - onto the SHOW.ejs
@@ -53,10 +53,23 @@ app.post("/books", async (req, res) => {
     res.redirect("books") //back to index page, avoids page hanging after submitting and getting no response
 })
 
+//edit book info form
+app.get("/books/:bookId/edit", async (req, res) => {
+    const foundBook = await Book.findById(req.params.bookId)
+    res.render("books/edit.ejs", {book:foundBook})
+})
+
+//getting edit book form
+app.put("/books/:bookId", async (req, res) => {
+    req.body.completed = Boolean(req.body.completed)
+    await Book.findByIdAndUpdate(req.params.bookId, req.body)
+    res.redirect(`/books/${req.params.bookId}`)
+}) 
+
 //books index page
-app.get("/books", async(req, res) => {
+app.get("/books", async (req, res) => {
     const allBooks = await Book.find({})
-    res.render("books/index.ejs", {books:allBooks})
+    res.render("books/index.ejs", { books: allBooks })
 })
 
 
@@ -65,10 +78,10 @@ app.get("/books", async(req, res) => {
 const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URI)
-    console.log("Mongo more like ReadyToGo")
-    app.listen((process.env.PORT), () => {
-        console.log("PORT (cough cough) running")
-    })
+        console.log("Mongo more like ReadyToGo")
+        app.listen((process.env.PORT), () => {
+            console.log("PORT (cough cough) running")
+        })
     } catch (err) {
         console.log(err, "check connect function")
     }

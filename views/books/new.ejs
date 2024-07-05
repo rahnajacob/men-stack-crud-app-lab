@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Book</title>
 </head>
+
 <body>
     <h1>Add a new book?</h1>
-    <form action = "/books" method = "POST">
+    <form action="/books" method="POST">
         <label hidden for="title">Title of the book: </label>
         <input type="text" name="title" id="title" placeholder="Enter book title here..." />
         <br />
@@ -15,10 +17,10 @@
         <input type="text" name="author" id="author" placeholder="Enter author name here" />
         <br />
         <label for="rating">Rating out of 5 stars: </label>
-        <input type="number" name="rating" id="rating" min="1" max="5"/> 
+        <input type="number" name="rating" id="rating" min="1" max="5" />
         <br />
         <label for="dateStarted">Started reading on: </label>
-        <input type="datetime-local" name="dateStarted" id="dateStarted" />
+        <input type="date" name="dateStarted" id="dateStarted" />
         <br />
         <label for="completed">Completed? </label>
         <input type="checkbox" name="completed" id="completed" />
@@ -29,4 +31,5 @@
         <button type="submit">Add Book</button>
     </form>
 </body>
+
 </html>
