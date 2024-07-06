@@ -18,9 +18,9 @@
         <input type="number" name="rating" id="rating" min="1" max="5" value="<%=book.rating%>"/>
         <br />
         <label for="dateStarted">Started reading on: </label>
-        <input type="date" name="dateStarted" id="dateStarted" value="<%=book.dateStarted%>"/>
+        <input type="date" name="dateStarted" id="dateStarted" value="<%=book.dateStarted ? book.dateStarted.toISOString().substring(0, 10) : ""%>"/>
         <br />
-        <label for="completed">Completed? </label>
+        <label for="completed">Completed: </label>
         <input type="checkbox" name="completed" id="completed" <%=book.completed && "checked"%>/>
         <br />
         <label for="rereads">Number of rereads: </label>
